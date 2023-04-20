@@ -1,0 +1,77 @@
+Tôi có 1 ứng dụng expressJS nhúng Ruby như sau, file index.js:
+const express = require('express');
+const app = express();
+
+const handlebars = require('express-handlebars').create({
+    defaultLayout: "main",
+    extname: "hbs",
+});
+
+// declare child_process and ejs
+var childProcess = require('child_process');
+var ejs = require('ejs');
+
+app.get('/', function (req, res) {
+    var rubyScript = childProcess.spawn('ruby', ['./views/index.rb']);
+    var htmlResult = '';
+
+    rubyScript.stdout.on('data', function (data) {
+        htmlResult += data.toString();
+    });
+
+    rubyScript.stderr.on('data', function (data) {
+        console.error('Error:', data.toString());
+    });
+
+    rubyScript.on('close', function (code) {
+        res.send(ejs.render(htmlResult));
+    });
+});
+
+
+app.listen(3000, () => console.log('Server started on port 3000'));
+
+file ./views/index.rb:
+require 'erb'
+
+# Define the variable to be passed to the HTML template
+ruby_variable = "This text was generated using Ruby."
+
+# Read the contents of the HTML file
+html_file = File.read('./views/index.html')
+
+# Create a new ERB template based on the HTML file
+template = ERB.new(html_file)
+
+# Render the template with the variables
+html_result = template.result(binding)
+
+# Send the HTML response to the client
+res.send(html_result)
+
+và file ./views/index.html:
+<html>
+  <head>
+    <title>Example Ruby Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      h1 {
+        color: #ff0000;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hello from Ruby!</h1>
+    <p>This is an example page created with Ruby.</p>
+    <%= ruby_variable %>
+  </body>
+</html>
+
+khi chạy thì gặp lỗi sau:
+Error: ./views/index.rb:16:in `<main>': undefined local variable or method `res' for main:Object (NameError)
+
+res.send(html_result)
+^^^
+Did you mean?  redo

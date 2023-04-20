@@ -1,0 +1,23 @@
+{
+  "name": "ruby",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
+    "haml": "^0.4.3",
+    "nodejs": "^0.0.0",
+    "nodemon": "^2.0.22",
+    "sass": "^1.62.0"
+  }
+}

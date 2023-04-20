@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Example Ruby Page</title>
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.js"
+      integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="CTN">
+      <div class="Store">
+        <div class="card">
+          <div class="cardTop">
+            <img class="cardIcon" src="/app/assets/nike.png" alt="nike" />
+          </div>
+          <div class="CardTitle">Our Products</div>
+          <div class="cardBody" id="BodyForShop"></div>
+        </div>
+      </div>
+      <div class="Cart">
+        <div class="card">
+          <div class="cardTop">
+            <img class="cardIcon" src="/app/assets/nike.png" alt="nike" />
+          </div>
+          <div class="CardTitle">
+            Your Cart
+            <span class="cardTitleAmount">$<span id="Bill">0</span> </span>
+          </div>
+          <div class="cardBody" id="BodyForCart"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="myShoes.js"></script>
+  <script type="module" src="index.js"></script>
+  <script src="event.js"></script>
+</html>

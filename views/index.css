@@ -1,0 +1,370 @@
+BODY {
+  color: #303841;
+  font-family: Rubik, sans-serif;
+  margin: 0;
+}
+
+body::before {
+  content: "";
+  display: block;
+  position: fixed;
+  width: 300%;
+  height: 100%;
+  top: 50%;
+  left: -50%;
+  border-radius: 100%;
+  transform: translateX(-50%) skewY(-8deg);
+  background-color: #f6c90e;
+  z-index: -1;
+  -webkit-animation: App_wave_3CtRm 8s ease-in-out infinite alternate;
+  animation: App_wave_3CtRm 8s ease-in-out infinite alternate;
+}
+
+@keyframes App_wave_3CtRm {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(60px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.card {
+  width: 20rem;
+  height: 40rem;
+  background-color: antiquewhite;
+}
+
+.CTN {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  flex-wrap: wrap;
+  padding: 0 20px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: #fff;
+  box-sizing: border-box;
+  width: 360px;
+  height: 600px;
+  box-shadow: 0 3.2px 2.2px rgba(0, 0, 0, 0.02),
+    0 7px 5.4px rgba(0, 0, 0, 0.028), 0 12.1px 10.1px rgba(0, 0, 0, 0.035),
+    0 19.8px 18.1px rgba(0, 0, 0, 0.042), 0 34.7px 33.8px rgba(0, 0, 0, 0.05),
+    0 81px 81px rgba(0, 0, 0, 0.07);
+  border-radius: 30px;
+  overflow: hidden;
+  padding: 0 28px;
+  position: relative;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+
+.card::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 100%;
+  background-color: #f6c90e;
+  top: -20%;
+  left: -50%;
+  z-index: 0;
+}
+
+.cardTop {
+  margin: 12px 0;
+  position: relative;
+}
+
+img {
+  overflow-clip-margin: content-box;
+  overflow: clip;
+}
+
+.cardIcon {
+  display: block;
+  width: 50px;
+}
+
+.CardTitle {
+  z-index: 2;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 16px 0;
+  position: relative;
+}
+
+.cardBody {
+  height: calc(100% - 98px);
+  position: relative;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.cardBody::-webkit-scrollbar {
+  display: none;
+}
+
+.ShopItem {
+  padding: 40px 0;
+}
+
+.ShopItem:first-child {
+  padding-top: 0;
+}
+
+.ShopItemImg {
+  background-color: rgb(225, 231, 237);
+  border-radius: 30px;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.ShopItemImg img {
+  display: block;
+  width: 100%;
+  filter: drop-shadow(0 30px 20px rgba(0, 0, 0, 0.2));
+  transform: rotate(-24deg);
+  margin-left: -16px;
+}
+
+.ShopItemName {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 26px 0 20px;
+  line-height: 1.5;
+}
+
+.ShopItemContent {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.ShopItemBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ShopItemPrices {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.ShopItemBtn .ItemInactive {
+  width: 46px;
+  pointer-events: none;
+  cursor: default;
+}
+
+.ShopItemBtn {
+  cursor: pointer;
+  background-color: #f6c90e;
+  font-weight: 700;
+  font-size: 14px;
+  box-sizing: border-box;
+  width: auto;
+  height: 46px;
+  min-width: 46px;
+  padding: 16px 20px;
+  border-radius: 100px;
+  transition: all 0.25s ease;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.shopItemBtnCover {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shopItemCoverCheck {
+  width: 100%;
+  height: 100%;
+  transform: translate(-100%, -73%) rotate(-45deg);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+.shopItemCoverCheck::before {
+  width: 3px;
+  height: 50%;
+}
+
+.shopItemCoverCheck::before,
+.shopItemCoverCheck::after {
+  content: "";
+  display: block;
+  background-color: #303841;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-radius: 10px;
+}
+
+.shopItemCoverCheck::after {
+  width: 100%;
+  height: 3px;
+}
+
+.shopItemCoverCheck::before,
+.shopItemCoverCheck::after {
+  content: "";
+  display: block;
+  background-color: #303841;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-radius: 10px;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.CartItem {
+  display: flex;
+  padding: 20px 0;
+}
+
+.CartItemLeft {
+  flex: 0;
+}
+
+.cartItemImg {
+  width: 90px;
+  height: 90px;
+  border-radius: 100%;
+  background-color: #eee;
+  margin-right: 34px;
+}
+
+.cartItemImgBlock img {
+  display: block;
+  width: 140%;
+  transform: rotate(-28deg) translateY(-40px);
+  filter: drop-shadow(0 30px 20px rgba(0, 0, 0, 0.2));
+}
+
+.cartItemRight {
+  flex: 1;
+}
+
+.cartItemName {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.cartItemPrice {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.cartItemAction {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.cartItemCount {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.cartItemCountBtn {
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  border-radius: 100%;
+  background-color: #eee;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.cartItemCountNumber {
+  font-size: 14px;
+  margin: 0 8px;
+  width: 20px;
+  text-align: center;
+}
+
+.cartItemRemove {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f6c90e;
+  transition: 0.2s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.cartItemRemove img {
+  width: 16px;
+  height: 16px;
+}
+
+.cardTitleAmount {
+  float: right;
+}
+
+.cartItemCountBtn:hover,
+.cartItemCountBtn:hover,
+.cartItemRemove:hover,
+.ShopItemBtn:hover {
+  box-shadow: 2px 2px 1px 1px rgba(199, 197, 197, 0.75);
+  scale: 1.01;
+}
+
+.CartP {
+  font-size: 14px;
+}
