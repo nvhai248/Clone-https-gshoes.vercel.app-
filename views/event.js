@@ -9,6 +9,15 @@ upDateCart = (Shoe, activity) => {
 removeFromCart = (id) => {
     $(`#BodyForCart #cartItem${id}`).remove();
     $(`#ShopItem${id}`).html(isNotInCart);
+
+    //remove from local Storage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let index = cart[id];
+    if (index !== -1) {
+        delete cart[id];
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
     if ($(`#BodyForCart`).html() == "") { $(`#BodyForCart`).html(`<p class="CartP">Your Cart is empty!</p>`) }
 }
 
@@ -44,6 +53,10 @@ addToCart = () => {
 
     upDateCart(obj.getCartItemHtml(), "Add");
     updateCartBill(obj.price, "Add")
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart[cart.length++] = obj;
+    localStorage.setItem('cart', JSON.stringify(cart));
 }
 
 minus = () => {
