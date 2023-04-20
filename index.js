@@ -14,15 +14,42 @@ app.use(express.json());
 // all images,... are provided from the file "public"
 app.use(express.static(path.join(__dirname, "views")));
 
-/* const handlebars = require('express-handlebars').create({
-    defaultLayout: "main",
-    extname: "hbs",
-});
 
-//setup handlebars
-app.engine("hbs", handlebars.engine);
-app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "src", "resources", "views")); */
+// connect to MongoDBAtlas
+const mongoose = require("mongoose");
+
+async function connect() {
+
+    try {
+        mongoose.connect('mongodb+srv://UchatDB:uchat@uchatcluster.deprlqm.mongodb.net/HShoes?retryWrites=true&w=majority', {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+
+        const connection = mongoose.connection;
+        connection.on('error', console.error.bind(console, 'connection error:'));
+        connection.once('open', function () {
+            // we're connected!
+            console.log('Connected to MongoDB Atlas');
+        });
+    }
+    catch (e) {
+        console.log(e);
+    }
+}
+
+connect();
+
+const Schema = mongoose.Schema
+
+const Shoes = new Schema({
+    shoes: { type: Array },
+}, {
+    collection: 'shoes',
+    timestamps: true,
+})
+
+let shoes = mongoose.model("shoes", Shoes);
 
 // declare child_process and ejs
 var childProcess = require('child_process');
@@ -45,13 +72,15 @@ app.get('/', function (req, res) {
     });
 });
 
+let mongoosesToObject = function (mongoose) {
+    return mongoose ? mongoose.toObject() : mongoose;
+}
+
 const fs = require('fs');
 
-app.get('/data_shoes', (req, res) => {
-    fs.readFile('shoes.json', (err, data) => {
-        if (err) throw err;
-        res.send(JSON.parse(data));
-    });
+app.get('/data_shoes', async (req, res) => {
+    let data = mongoosesToObject(await shoes.findOne({ _id: `6440c4c01b0411e37bc11cef` }));
+    res.send(data);
 });
 
 
