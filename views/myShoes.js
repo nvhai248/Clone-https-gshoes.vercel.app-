@@ -40,14 +40,13 @@ class MyShoes {
             <div class="ShopItemBottom">
             <div class="ShopItemPrices">$${this.price}</div>
             <div 
-            class="ShopItemBtn ItemInactive" 
+            class="ShopItemBtn ItemInactive" id="ShopItem${this.id}"
             data-id="${this.id}" 
             data-image="${this.image}"
             data-name="${this.name}"
             data-description="${this.description}"
             data-price="${this.price}"
             data-color="${this.color}">
-
                 ${isNotInCart}
             </div>
             </div>
@@ -57,7 +56,7 @@ class MyShoes {
 
     getCartItemHtml() {
         return `
-        <div class="CartItem">
+        <div class="CartItem" id=cartItem${this.id}>
             <div class="CartItemLeft">
             <div class="cartItemImg" style="background-color: ${this.color}">
                 <div class="cartItemImgBlock">
@@ -72,15 +71,18 @@ class MyShoes {
             <div class="cartItemRight">
             <div class="cartItemName">${this.name}</div>
             <div class="cartItemPrice">$${this.price}</div>
-            <div class="cartItemAction">
+            <div class="cartItemAction" 
+            data-price="${this.price}"
+            data-id="${this.id}"
+            >
                 <div class="cartItemCount">
-                    <div class="cartItemCountBtn">-</div>
+                    <div class="cartItemCountBtn" onclick="minus()">-</div>
                     <div class="cartItemCountNumber">1</div>
-                    <div class="cartItemCountBtn">+</div>
+                    <div class="cartItemCountBtn" onclick="plus()">+</div>
                 </div>
 
-                <div class="cartItemRemove">
-                <img src="/app/assets/trash.png" alt="trash" />
+                <div class="cartItemRemove"  onclick="remove()">
+                    <img src="/app/assets/trash.png" alt="trash"/>
                 </div>
             </div>
             </div>

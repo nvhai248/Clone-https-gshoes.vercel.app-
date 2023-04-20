@@ -1,10 +1,15 @@
 upDateCart = (Shoe, activity) => {
     if (activity == "Add") {
+        if ($('#BodyForCart').html() == `<p class="CartP">Your Cart is empty!</p>`)
+            $('#BodyForCart').html("");
         $('#BodyForCart').html($('#BodyForCart').html() + Shoe);
     }
-    else {
-        $('#BodyForCart').html($('#BodyForCart').html() - Shoe);
-    }
+}
+
+removeFromCart = (id) => {
+    $(`#BodyForCart #cartItem${id}`).remove();
+    $(`#ShopItem${id}`).html(isNotInCart);
+    if ($(`#BodyForCart`).html() == "") { $(`#BodyForCart`).html(`<p class="CartP">Your Cart is empty!</p>`) }
 }
 
 
@@ -14,6 +19,10 @@ updateCartBill = (moneys, activity) => {
     }
     else {
         $('#Bill').html((parseFloat($('#Bill').html()) - parseFloat(moneys)).toFixed(2));
+
+        if (parseFloat($('#Bill').html()) < 0) {
+            $('#Bill').html("0")
+        }
     }
 }
 
@@ -37,3 +46,58 @@ addToCart = () => {
     updateCartBill(obj.price, "Add")
 }
 
+minus = () => {
+    let myDiv = event.target.parentElement;
+    let tagA = myDiv.querySelector('.cartItemCountNumber');
+    let count = parseInt(tagA.innerHTML);
+    count--;
+
+    // update numbers
+    tagA.innerHTML = count;
+
+    // div update Data
+    let divGetData = event.target.closest('.cartItemCount').parentElement;
+    let prices = divGetData.getAttribute("data-price");
+    let id = divGetData.getAttribute("data-id");
+    // update bill
+    updateCartBill(prices, "Del");
+
+    if (count == 0) {
+        //remove HTML 
+        removeFromCart(id);
+    }
+}
+
+plus = () => {
+    let myDiv = event.target.parentElement;
+    let tagA = myDiv.querySelector('.cartItemCountNumber');
+    let count = parseInt(tagA.innerHTML);
+    count++;
+
+    // update numbers
+    tagA.innerHTML = count;
+
+    // div update Data
+    let divGetData = event.target.closest('.cartItemCount').parentElement;
+    let prices = divGetData.getAttribute("data-price");
+    // update bill
+    updateCartBill(prices, "Add");
+}
+
+remove = () => {
+    let myDiv = event.target.closest('.cartItemRemove').parentElement;
+    let tagA = myDiv.querySelector('.cartItemCount');
+    tagA = myDiv.querySelector('.cartItemCountNumber');
+    let count = parseInt(tagA.innerHTML);
+
+    // div update Data
+    let divGetData = event.target.closest('.cartItemRemove').parentElement;
+    let prices = divGetData.getAttribute("data-price");
+    let id = divGetData.getAttribute("data-id");
+
+    // update bill
+    updateCartBill(prices * count, "Del");
+
+    //remove HTML 
+    removeFromCart(id);
+}
